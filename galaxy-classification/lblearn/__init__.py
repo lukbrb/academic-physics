@@ -1,0 +1,1 @@
+""" My very own package mimicking the basic classifiers of Scikit-Learn that I will use in this galaxy classifier project."""
