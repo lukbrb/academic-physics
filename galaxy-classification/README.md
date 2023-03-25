@@ -1,73 +1,56 @@
-# Scikit-learn Tutorial
+# Galaxy Classification
 
-*Jake VanderPlas*
+This project aims to give a tour of the Scikit-learn library capabilities, and to give some concrete examples on how to use classifiers for real world problems.
+The problem we tackle here is the classification of galaxies. The data used comes from the Galaxy Zoo project.
 
-- email: <jakevdp@uw.edu>
-- twitter: [@jakevdp](https://twitter.com/jakevdp)
-- github: [jakevdp](http://github.com/jakevdp)
+*Note: This project is based on the excellent sklearn tutorial from Jake VanderPlas. The original GitHub repository can be found [here](https://github.com/jakevdp/sklearn_tutorial)*
 
-This repository contains notebooks and other files associated with my
-[Scikit-learn](http://scikit-learn.org) tutorial.
+## Dataset presentation
+
+### Galaxy Zoo1 Catalog Data
+
+This dataset contains information on galaxy classifications made by participants of the Galaxy Zoo project.
+The file can be found at the following URL: <https://galaxy-zoo-1.s3.amazonaws.com/GalaxyZoo1_DR_table2.csv.gz>
+
+This table gives classifications of galaxies which have spectra included in SDSS Data Release 7.
+The fraction of the vote in each of the six categories is given, along with debiased votes in elliptical and spiral categories and
+flags identifying systems as classified as spiral, elliptical or uncertain.
+
+#### Column Descriptions
+
+1. OBJID: Unique identifier of the galaxy in the SDSS catalog.
+2. RA: Right Ascension (in degrees) of the galaxy.
+3. DEC: Declination (in degrees) of the galaxy.
+4. NVOTE: Number of votes obtained for this galaxy.
+5. P_EL: Probability that the galaxy is elliptical.
+6. P_CW: Probability that the galaxy is a clockwise spiraled galaxy.
+7. P_ACW: Probability that the galaxy is a anticlockwise spiraled galaxy.
+8. P_EDGE: Probability that the galaxy is a galaxy with a blurred edge.
+9. P_DK: Probability that the galaxy is a galaxy with a dominant nucleus.
+10. P_MG: Probability that the galaxy is a galaxy with multiple nuclei.
+11. P_CS: Probability that the galaxy is a galaxy with strange features.
+12. P_EL_DEBIASED: Probability of the elliptical classification, corrected for bias effect.
+13. P_CS_DEBIASED: Probability of the classification with strange features, corrected for bias effect.
+14. SPIRAL: Number of votes for the "spiral" classification.
+15. ELLIPTICAL: Number of votes for the "elliptical" classification.
+16. UNCERTAIN: Number of votes for the "uncertain" classification.
+
+Each of these columns is used to describe the classification of a given galaxy by Galaxy Zoo participants.
+The P_* columns contain classification probabilities for each type of galaxy, while the SPIRAL, ELLIPTICAL,
+and UNCERTAIN columns provide the number of votes for each classification. The P_*_DEBIASED columns are corrected for bias effect.
 
 ## Installation Notes
-This tutorial requires the following packages:
 
-- Python version 2.6-2.7 or 3.3+
-- `numpy` version 1.5 or later: http://www.numpy.org/
-- `scipy` version 0.10 or later: http://www.scipy.org/
-- `matplotlib` version 1.3 or later: http://matplotlib.org/
-- `scikit-learn` version 0.14 or later: http://scikit-learn.org
-- `ipython` version 2.0 or later, with notebook support: http://ipython.org
-- `seaborn` version 0.5 or later
+**For current (2023) version of the project:**  
 
-The easiest way to get these is to use the [conda](https://store.continuum.io/) environment manager.
-I suggest downloading and installing [miniconda](http://conda.pydata.org/miniconda.html).
-
-Once this is installed, the following command will install all required packages in your Python environment:
-```
-Original install (2015)
-$ conda install numpy scipy matplotlib scikit-learn ipython-notebook seaborn
-
-For older version Anaconda (Mar 2018)
- 
-$ conda create -n skl_tut python=3.4.5 ipywidgets=5.2.2 numpy scipy matplotlib scikit-learn ipython-notebook seaborn pillow
+``` shell
+$ conda create -n glx_clf python=3.10.8 --file requirements.txt
 ```
 
-**For current (2023) version of the project:** 
-```
-$ conda create -n skl_tut python=3.10.8 --file requirements.txt
+``` shell
+$ activate glx_clf
 ```
 
-```
-$ activate skl_tut
-```
-```
+``` shell
 $ jupyter notebook --notebook-dir='<tutorial folder>'
 ```
-
-Alternatively, you can download and install the (very large) Anaconda software distribution, found at https://store.continuum.io/.
-
-## Downloading the Tutorial Materials
-I would highly recommend using git, not only for this tutorial, but for the
-general betterment of your life.  Once git is installed, you can clone the
-material in this tutorial by using the git address shown above:
-
-    git clone git://github.com/jakevdp/sklearn_tutorial.git
-
-If you can't or don't want to install git, there is a link above to download
-the contents of this repository as a zip file.  I may make minor changes to
-the repository in the days before the tutorial, however, so cloning the
-repository is a much better option.
-
-
-## Notebook Listing
-You can [view the tutorial materials](http://nbviewer.ipython.org/github/jakevdp/sklearn_tutorial/blob/master/notebooks/Index.ipynb) using the excellent nbviewer service.
-
-Note, however, that you cannot modify or run the contents within nbviewer.
-To modify them, first download the tutorial repository, change to the notebooks directory, and run ``ipython notebook``.
-You should see the list in the ipython notebook launch page in your web browser.
-For more information on the IPython notebook, see http://ipython.org/notebook.html
-
-Note also that some of the code in these notebooks will not work outside the
-directory structure of this tutorial, so it is important to clone the full
-repository if possible.
