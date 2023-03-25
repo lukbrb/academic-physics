@@ -41,7 +41,26 @@ and UNCERTAIN columns provide the number of votes for each classification. The P
 
 ## Installation Notes
 
-**For current (2023) version of the project:**  
+**Download the project:**
+
+``` shell
+$ cd /<desired-diretory>
+```
+
+Then :
+
+``` shell
+$ git clone https://github.com/lukbrb/academic-physics/tree/master
+
+$ mv academic-physics/galaxy-classification/ .
+
+$ cd galaxy-classification
+```
+
+This will download the whole `academic-projects` directory, then move the `galaxy-classification` project in your current directory. Finally,
+it will remove the whole `academic-physics` folder and subfolders.
+
+**Requirements:**  
 
 ``` shell
 $ conda create -n glx_clf python=3.10.8 --file requirements.txt
