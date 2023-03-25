@@ -91,12 +91,16 @@ def load_galaxies(*, return_X_y=False, as_frame=False):
     target = target_matrix.max(axis=1) - 1
 
     frame = None
+
+    with open("table2.rst") as fp:
+        fdescr = fp.read()
+
     return DataSet(
         data=data,
         target=target,
         frame=frame,
         target_names=target_names,
-        DESCR="The galaxy Zoo 1 data, table 2. More info on the dataset is to come.",
+        DESCR=fdescr,
         feature_names=feature_names,
         filename=data_filename,
         data_module="lblearn.data_preparation",
