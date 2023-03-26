@@ -44,7 +44,7 @@ and UNCERTAIN columns provide the number of votes for each classification. The P
 **Download the project:**
 
 ``` shell
-$ cd /<desired-diretory>
+$ cd /'<desired-diretory>'
 ```
 
 Then :
