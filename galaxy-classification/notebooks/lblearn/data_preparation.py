@@ -57,8 +57,10 @@ class DataSet(dict):
 
 
 GALAXY_FILENAME = "data/GalaxyZoo1_DR_table2.csv"
+DESC_FILENAME = "data/table2.rst"
 DATA_PACKAGE = "lblearn"
 DATA_PATH = os.path.join(os.getcwd(), DATA_PACKAGE, GALAXY_FILENAME)
+DESC_PATH = os.path.join(os.getcwd(), DATA_PACKAGE, DESC_FILENAME)
 
 def load_galaxies(*, return_X_y=False, as_frame=False):
     if return_X_y:
@@ -92,7 +94,7 @@ def load_galaxies(*, return_X_y=False, as_frame=False):
 
     frame = None
 
-    with open("table2.rst") as fp:
+    with open(DESC_PATH) as fp:
         fdescr = fp.read()
 
     return DataSet(
