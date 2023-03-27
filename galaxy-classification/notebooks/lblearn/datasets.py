@@ -1,9 +1,12 @@
 """ Module made to ease the data preparation for each classifier used in the project."""
+from collections import Counter
+
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
 import os
+
 
 # From sklearn.utils._bunch import Bunch
 class DataSet(dict):
@@ -62,7 +65,8 @@ DATA_PACKAGE = "lblearn"
 DATA_PATH = os.path.join(os.getcwd(), DATA_PACKAGE, GALAXY_FILENAME)
 DESC_PATH = os.path.join(os.getcwd(), DATA_PACKAGE, DESC_FILENAME)
 
-def load_galaxies(*, return_X_y=False, as_frame=False):
+
+def load_galaxies(*, return_X_y=False, as_frame=False, balance=True, n_samples=None):
     if return_X_y:
         raise NotImplementedError('The option for returning X and y is not yet available.')
     if as_frame:
@@ -91,7 +95,19 @@ def load_galaxies(*, return_X_y=False, as_frame=False):
     data = df.drop(['OBJID', 'RA', 'DEC', 'SPIRAL', 'ELLIPTICAL', 'UNCERTAIN'], axis=1).values
     target_matrix = np.array(df[['SPIRAL', 'ELLIPTICAL', 'UNCERTAIN']])
     target = target_matrix.max(axis=1) - 1
-
+    count = Counter(target)
+    min_class, min_val = count.most_common()[-1]
+    if n_samples:
+        assert balance is True, "Choice of the number of datapoints forbidden if balanced is not True. Prevents " \
+                                "strongly imbalanced dataset."
+        assert n_samples < min_val, "The number of samples has to be smaller than the number of points of the least " \
+                                    "represented class."
+    else:
+        n_samples = min_val
+    if balance:
+        samples = balance_data(y=target, n_samples=n_samples)
+        target = target[samples]
+        data = data[samples]
     frame = None
 
     with open(DESC_PATH) as fp:
@@ -129,10 +145,14 @@ def get_prepared_data(filename: str, process=False) -> tuple:
     return X_train, X_test, y_train, y_test
 
 
-def _flatten_target_columns(columns: list) -> np.ndarray:
-    targets = np.hstack(columns)
-    values = targets[(targets == 10) | (targets == 100) | (targets == 1000)]
-    values[values == 10] = 0
-    values[values == 100] = 1
-    values[values == 1000] = 2
-    return values
+def balance_data(y: np.ndarray, n_samples: int):
+    samples0 = np.random.choice(np.where(y == 0)[0], (n_samples,))
+    samples1 = np.random.choice(np.where(y == 1)[0], (n_samples,))
+    samples2 = np.random.choice(np.where(y == 2)[0], (n_samples,))
+
+    assert len(samples1) == len(samples2) == len(
+        samples0), f"Sample length are not equal, {len(samples1)} different from {len(samples2)} and {len(samples0)}."
+    assert np.all(samples1 != samples2), "Some indices overlap but it should not be possible"
+    assert np.all(samples1 != samples0), "Some indices overlap but it should not be possible"
+
+    return np.hstack((samples0, samples1, samples2))
