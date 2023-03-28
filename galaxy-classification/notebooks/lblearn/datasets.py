@@ -146,6 +146,7 @@ def get_prepared_data(filename: str, process=False) -> tuple:
 
 
 def balance_data(y: np.ndarray, n_samples: int):
+    np.random.seed(42) # make the choice or dataset reproducible
     samples0 = np.random.choice(np.where(y == 0)[0], (n_samples,))
     samples1 = np.random.choice(np.where(y == 1)[0], (n_samples,))
     samples2 = np.random.choice(np.where(y == 2)[0], (n_samples,))
