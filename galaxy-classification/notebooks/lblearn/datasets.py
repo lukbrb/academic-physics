@@ -121,7 +121,7 @@ def load_galaxies(*, return_X_y=False, as_frame=False, balance=True, n_samples=N
         DESCR=fdescr,
         feature_names=feature_names,
         filename=data_filename,
-        data_module="lblearn.data_preparation",
+        data_module="lblearn.datasets",
     )
 
 
