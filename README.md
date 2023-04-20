@@ -1,8 +1,9 @@
 # academic-physics
-Repository for academic projects, notebooks or data. 
 
+Repository for academic projects, notebooks or data.
 
 ## 1. [Gravitational Aharonov-Bohm Effect](/GravitationAharonovBohmEffect)
+
 The Aharonov-Bohm effect was predicted by Aharanov and Bohm [1]
 in 1959, and shortly after confirmed by experimentation [3, 11, 12]. In
 this paper, we study the gravitational analogue of this magnetic effect,
@@ -26,3 +27,7 @@ the acceleration of the expansion. In this work we try to determine if the avail
 conclude with certainty to a cosmic acceleration. In Sec. 2 we display the properties of SNIa and
 introduce some notions of cosmology.
 
+## 3. [Galaxy Classification](/galaxy-classification)
+
+This project aims to give a tour of the Scikit-learn library capabilities, and to give some concrete examples on how to use classifiers for real world problems.
+The problem we tackle here is the classification of galaxies. The data used comes from the Galaxy Zoo project. Convolutional neural networks are also studied.
