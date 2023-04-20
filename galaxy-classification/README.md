@@ -3,8 +3,6 @@
 This project aims to give a tour of the Scikit-learn library capabilities, and to give some concrete examples on how to use classifiers for real world problems.
 The problem we tackle here is the classification of galaxies. The data used comes from the Galaxy Zoo project.
 
-*Note: This project is based on the excellent sklearn tutorial from Jake VanderPlas. The original GitHub repository can be found [here](https://github.com/jakevdp/sklearn_tutorial)*
-
 ## Dataset presentation
 
 ### Galaxy Zoo1 Catalog Data
@@ -44,13 +42,13 @@ and UNCERTAIN columns provide the number of votes for each classification. The P
 **Download the project:**
 
 ``` shell
-$ cd /'<desired-diretory>'
+cd /'<desired-diretory>'
 ```
 
 Then :
 
 ``` shell
-$ git clone https://github.com/lukbrb/academic-physics/tree/master
+git clone https://github.com/lukbrb/academic-physics/tree/master
 
 $ mv academic-physics/galaxy-classification/ .
 
@@ -63,13 +61,13 @@ it will remove the whole `academic-physics` folder and subfolders.
 **Requirements:**  
 
 ``` shell
-$ conda create -n glx_clf python=3.10.8 --file requirements.txt
+conda create -n glx_clf python=3.10.8 --file requirements.txt
 ```
 
 ``` shell
-$ activate glx_clf
+activate glx_clf
 ```
 
 ``` shell
-$ jupyter notebook --notebook-dir='<tutorial folder>'
+jupyter lab
 ```
