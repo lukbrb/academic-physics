@@ -7,3 +7,5 @@ Exercise1-Dec2022.ipynb
 .idea
 .vscode
 *.jpg
+galaxy-classification/data/gz2_hart16.csv
+galaxy-classification/ecrit_fr.pdf
